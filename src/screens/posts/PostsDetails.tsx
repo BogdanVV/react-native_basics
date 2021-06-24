@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
 import { colors } from '../../assets/colors';
@@ -29,6 +29,10 @@ const PostsDetails = ({ route }: any) => {
     <View style={styles.mainWrapper}>
       <ScrollView>
         <View style={styles.cardWrapper}>
+          <Image
+            style={styles.image}
+            source={{ uri: 'https://picsum.photos/id/222/200/300' }}
+          />
           <Text>Post's id: {post?.id}</Text>
           <Text>Post's title: {post?.title}</Text>
           <Text>Post's body: {post?.body}</Text>
@@ -48,6 +52,10 @@ const styles = StyleSheet.create({
   cardWrapper: {
     borderWidth: 1,
     padding: 10,
+  },
+  image: {
+    width: '100%',
+    height: 150,
   },
 });
 

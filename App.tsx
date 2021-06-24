@@ -8,6 +8,7 @@ import PostsScreen from './src/screens/posts/PostsScreen';
 import UsersScreen from './src/screens/users/UsersScreen';
 import PostsDetails from './src/screens/posts/PostsDetails';
 import UsersDetails from './src/screens/users/UsersDetails';
+import TodosDetails from './src/screens/todos/TodosDetails';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,11 @@ const App = () => {
           name="UsersDetails"
           component={UsersDetails}
           options={{ title: "User's details" }}
+        />
+        <Stack.Screen
+          name="TodosDetails"
+          component={TodosDetails}
+          options={{ title: "Todo's details" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

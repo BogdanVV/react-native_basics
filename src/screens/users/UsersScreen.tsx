@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ScrollView, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  ScrollView,
+  Button,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import axios from 'axios';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import { colors } from '../../assets/colors';
@@ -29,13 +37,18 @@ export const UsersScreen = ({ navigation }: any) => {
       <ScrollView>
         {users.map((user: any) => (
           <TouchableOpacity
+            key={user.id}
             activeOpacity={0.8}
             onPress={() => {
               navigation.navigate('UsersDetails', { userId: user.id });
             }}
           >
             <View style={styles.usersCard}>
-              <Text key={user.id}>{user.name}</Text>
+              <Image
+                style={styles.image}
+                source={{ uri: 'https://picsum.photos/id/222/200/300' }}
+              />
+              <Text>{user.name}</Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -57,9 +70,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   usersCard: {
+    alignItems: 'center',
     borderWidth: 1,
     padding: 10,
     marginVertical: 10,
+  },
+  image: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
   },
 });
 

@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import axios from 'axios';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -27,17 +34,30 @@ export const TodosScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.mainWrapper}>
-      <ScrollView>
-        {todos.map((todo: any) => (
-          <Text key={todo.id}>{todo.title}</Text>
-        ))}
-        <Button
-          title="Go back"
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      </ScrollView>
+      <Text>
+        Flatlist. Facing issue with not responding TouchableOpacity on the 1st
+        press
+      </Text>
+      <FlatList
+        data={todos}
+        renderItem={({ item }: any) => (
+          <TouchableOpacity
+            key={Math.random()}
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('TodosDetails', { todoId: item.id });
+            }}
+          >
+            <View style={styles.todoCard}>
+              <Image
+                style={styles.image}
+                source={{ uri: `https://picsum.photos/id/222/200/300` }}
+              />
+              <Text key={item.id}>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
@@ -47,6 +67,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     backgroundColor: colors.white,
+  },
+  todoCard: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
   },
 });
 

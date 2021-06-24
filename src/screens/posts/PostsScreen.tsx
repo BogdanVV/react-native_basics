@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  Image,
 } from 'react-native';
 import axios from 'axios';
 
@@ -42,6 +43,10 @@ export const PostsScreen = ({ navigation }: any) => {
             key={post.id}
           >
             <View style={styles.postCard}>
+              <Image
+                style={styles.image}
+                source={{ uri: 'https://picsum.photos/id/222/200/300' }}
+              />
               <Text>{post.title}</Text>
             </View>
           </TouchableOpacity>
@@ -64,8 +69,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   postCard: {
+    flexDirection: 'row',
     borderWidth: 1,
     marginVertical: 10,
+  },
+  image: {
+    width: 150,
+    height: 150,
   },
 });
 
