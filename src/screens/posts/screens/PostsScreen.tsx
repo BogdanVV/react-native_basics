@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-import LoadingIndicator from '../../components/LoadingIndicator';
-import { colors } from '../../assets/colors';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import { colors } from '../../../assets/colors';
 
 export const PostsScreen = ({ navigation }: any) => {
   const [posts, setPosts] = useState([]);
@@ -23,6 +23,9 @@ export const PostsScreen = ({ navigation }: any) => {
       .get('https://jsonplaceholder.typicode.com/posts')
       .then(({ data }) => {
         setPosts(data);
+      })
+      .catch(err => {
+        console.log(err);
       })
       .finally(() => {
         setIsScreenLoading(false);
@@ -38,8 +41,11 @@ export const PostsScreen = ({ navigation }: any) => {
       <ScrollView>
         {posts.map((post: any) => (
           <TouchableOpacity
+            style={styles.postCardContainer}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('PostsDetails', { id: post.id })}
+            onPress={() => {
+              navigation.navigate('PostsDetailsScreen', { postId: post.id });
+            }}
             key={post.id}
           >
             <View style={styles.postCard}>
@@ -71,6 +77,8 @@ const styles = StyleSheet.create({
   postCard: {
     flexDirection: 'row',
     borderWidth: 1,
+  },
+  postCardContainer: {
     marginVertical: 10,
   },
   image: {

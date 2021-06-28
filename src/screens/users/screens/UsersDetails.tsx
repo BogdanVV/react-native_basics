@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
-import { colors } from '../../assets/colors';
+import { colors } from '../../../assets/colors';
 import axios from 'axios';
-import LoadingIndicator from '../../components/LoadingIndicator';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const UsersDetails = ({ route }: any) => {
   const [user, setUser]: any = useState(null);
@@ -14,6 +14,9 @@ const UsersDetails = ({ route }: any) => {
       .get(`https://jsonplaceholder.typicode.com/users/${route.params.userId}`)
       .then(({ data }) => {
         setUser(data);
+      })
+      .catch(err => {
+        console.log(err);
       })
       .finally(() => {
         setIsScreenLoading(false);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { colors } from '../../assets/colors';
+import { colors } from '../../../assets/colors';
 
 const HomeScreen = ({ navigation }: any) => {
   return (
@@ -10,24 +10,36 @@ const HomeScreen = ({ navigation }: any) => {
         <Button
           title="Go to posts"
           onPress={() => {
-            navigation.navigate('PostsScreen');
+            navigation.navigate('Posts');
           }}
+          color={colors.primarySecond}
         />
       </View>
       <View style={styles.navButton}>
         <Button
           title="Go to users"
           onPress={() => {
-            navigation.navigate('UsersScreen');
+            navigation.navigate('Users');
           }}
+          color={colors.grey}
         />
       </View>
       <View style={styles.navButton}>
         <Button
           title="Go to todos"
           onPress={() => {
-            navigation.navigate('TodosScreen');
+            navigation.navigate('Todos');
           }}
+          color={colors.primarySecond}
+        />
+      </View>
+      <View style={styles.navButton}>
+        <Button
+          title="Go to settings screen in Profile's stack"
+          onPress={() => {
+            navigation.navigate('Profile', { screen: 'SettingsScreen' });
+          }}
+          color={colors.primarySecond}
         />
       </View>
     </View>

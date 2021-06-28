@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import LoadingIndicator from '../../components/LoadingIndicator';
-import { colors } from '../../assets/colors';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import { colors } from '../../../assets/colors';
 
 const PostsDetails = ({ route }: any) => {
   const [post, setPost]: any = useState(null);
@@ -12,9 +12,12 @@ const PostsDetails = ({ route }: any) => {
   useEffect(() => {
     setIsScreenLoading(true);
     axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+      .get(`https://jsonplaceholder.typicode.com/posts/${route.params.postId}`)
       .then(({ data }) => {
         setPost(data);
+      })
+      .catch(err => {
+        console.log(err);
       })
       .finally(() => {
         setIsScreenLoading(false);

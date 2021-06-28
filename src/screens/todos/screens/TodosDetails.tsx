@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../assets/colors';
+import { colors } from '../../../assets/colors';
 import axios from 'axios';
-import LoadingIndicator from '../../components/LoadingIndicator';
+import LoadingIndicator from '../../../components/LoadingIndicator';
 
 const TodosDetails = ({ route }: any) => {
   const [todo, setTodo]: any = useState(null);
@@ -14,6 +14,9 @@ const TodosDetails = ({ route }: any) => {
       .get(`https://jsonplaceholder.typicode.com/todos/${route.params.todoId}`)
       .then(({ data }) => {
         setTodo(data);
+      })
+      .catch(err => {
+        console.log(err);
       })
       .finally(() => {
         setIsScreenLoading(false);
